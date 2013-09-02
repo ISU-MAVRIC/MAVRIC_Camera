@@ -1,0 +1,24 @@
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 9/1/2013 7:57:47 PM
+
+BeginCmp
+TimeStamp = /5223DBFF;
+Reference = J1;
+ValeurCmp = MASTER;
+IdModule  = WM5576;
+EndCmp
+
+BeginCmp
+TimeStamp = /5223DDBC;
+Reference = J2;
+ValeurCmp = CAMERA;
+IdModule  = CONN-6200-09-SMT;
+EndCmp
+
+BeginCmp
+TimeStamp = /5223DC0E;
+Reference = J3;
+ValeurCmp = SERVO;
+IdModule  = WM5576;
+EndCmp
+
+EndListe
