@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 9/2/2013 2:24:04 PM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 9/2/2013 4:24:52 PM
 
 BeginCmp
 TimeStamp = /5223F070;
@@ -11,6 +11,20 @@ BeginCmp
 TimeStamp = /5224D9FE;
 Reference = C2;
 ValeurCmp = 0.1uF;
+IdModule  = CAPC2012;
+EndCmp
+
+BeginCmp
+TimeStamp = /5224FADD;
+Reference = C3;
+ValeurCmp = CP;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /5224FBE7;
+Reference = C4;
+ValeurCmp = C;
 IdModule  = CAPC2012;
 EndCmp
 
@@ -57,6 +71,20 @@ IdModule  = RESC2012;
 EndCmp
 
 BeginCmp
+TimeStamp = /5224FAB5;
+Reference = R2;
+ValeurCmp = R;
+IdModule  = RESC2012;
+EndCmp
+
+BeginCmp
+TimeStamp = /5224FACE;
+Reference = R3;
+ValeurCmp = R;
+IdModule  = RESC2012;
+EndCmp
+
+BeginCmp
 TimeStamp = /5223EE94;
 Reference = U1;
 ValeurCmp = SN74HC126;
@@ -68,6 +96,13 @@ TimeStamp = /5224D9C1;
 Reference = U2;
 ValeurCmp = SN74LVC1G04;
 IdModule  = SOT95P280-5N;
+EndCmp
+
+BeginCmp
+TimeStamp = /5224FAA6;
+Reference = U3;
+ValeurCmp = BA00DD0W;
+IdModule  = TO263-6N;
 EndCmp
 
 EndListe
