@@ -1,4 +1,18 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 9/1/2013 7:57:47 PM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 9/2/2013 2:24:04 PM
+
+BeginCmp
+TimeStamp = /5223F070;
+Reference = C1;
+ValeurCmp = 0.1uF;
+IdModule  = CAPC2012;
+EndCmp
+
+BeginCmp
+TimeStamp = /5224D9FE;
+Reference = C2;
+ValeurCmp = 0.1uF;
+IdModule  = CAPC2012;
+EndCmp
 
 BeginCmp
 TimeStamp = /5223DBFF;
@@ -19,6 +33,41 @@ TimeStamp = /5223DC0E;
 Reference = J3;
 ValeurCmp = SERVO;
 IdModule  = WM5576;
+EndCmp
+
+BeginCmp
+TimeStamp = /5224E581;
+Reference = J4;
+ValeurCmp = ICSP-PIC;
+IdModule  = HDRV5W38P254_5X1-LOCK;
+EndCmp
+
+BeginCmp
+TimeStamp = /5224E590;
+Reference = J5;
+ValeurCmp = USB;
+IdModule  = WM17143CT;
+EndCmp
+
+BeginCmp
+TimeStamp = /5223F04D;
+Reference = R1;
+ValeurCmp = 10k;
+IdModule  = RESC2012;
+EndCmp
+
+BeginCmp
+TimeStamp = /5223EE94;
+Reference = U1;
+ValeurCmp = SN74HC126;
+IdModule  = SOIC127P600-14N;
+EndCmp
+
+BeginCmp
+TimeStamp = /5224D9C1;
+Reference = U2;
+ValeurCmp = SN74LVC1G04;
+IdModule  = SOT95P280-5N;
 EndCmp
 
 EndListe

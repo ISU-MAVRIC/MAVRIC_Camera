@@ -1,4 +1,4 @@
-update=9/1/2013 7:14:48 PM
+update=9/1/2013 8:55:15 PM
 version=1
 last_client=eeschema
 [cvpcb]
@@ -33,10 +33,11 @@ LibName1=Aerodyne_v2
 [eeschema]
 version=1
 LibDir=../../KiCadLib
-NetFmtName=
+NetFmtName=PcbnewAdvanced
 RptD_X=0
 RptD_Y=100
 RptLab=1
 LabSize=60
 [eeschema/libraries]
 LibName1=Aerodyne_v2
+LibName2=power
