@@ -1,29 +1,22 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 9/2/2013 4:24:52 PM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 9/4/2013 6:43:34 PM
 
 BeginCmp
-TimeStamp = /5223F070;
+TimeStamp = /5227C85D;
 Reference = C1;
-ValeurCmp = 0.1uF;
-IdModule  = CAPC2012;
-EndCmp
-
-BeginCmp
-TimeStamp = /5224D9FE;
-Reference = C2;
-ValeurCmp = 0.1uF;
-IdModule  = CAPC2012;
-EndCmp
-
-BeginCmp
-TimeStamp = /5224FADD;
-Reference = C3;
 ValeurCmp = CP;
-IdModule  = ;
+IdModule  = CAPCP2012;
 EndCmp
 
 BeginCmp
-TimeStamp = /5224FBE7;
-Reference = C4;
+TimeStamp = /5227C97A;
+Reference = C2;
+ValeurCmp = CP;
+IdModule  = CAPCP2012;
+EndCmp
+
+BeginCmp
+TimeStamp = /5227C748;
+Reference = C3;
 ValeurCmp = C;
 IdModule  = CAPC2012;
 EndCmp
@@ -64,45 +57,38 @@ IdModule  = WM17143CT;
 EndCmp
 
 BeginCmp
-TimeStamp = /5223F04D;
+TimeStamp = /5227C1BD;
 Reference = R1;
-ValeurCmp = 10k;
+ValeurCmp = R;
 IdModule  = RESC2012;
 EndCmp
 
 BeginCmp
-TimeStamp = /5224FAB5;
+TimeStamp = /5227C8A4;
 Reference = R2;
 ValeurCmp = R;
 IdModule  = RESC2012;
 EndCmp
 
 BeginCmp
-TimeStamp = /5224FACE;
+TimeStamp = /5227C739;
 Reference = R3;
 ValeurCmp = R;
 IdModule  = RESC2012;
 EndCmp
 
 BeginCmp
-TimeStamp = /5223EE94;
+TimeStamp = /5227C72A;
+Reference = R4;
+ValeurCmp = R;
+IdModule  = RESC2012;
+EndCmp
+
+BeginCmp
+TimeStamp = /5227C71B;
 Reference = U1;
-ValeurCmp = SN74HC126;
-IdModule  = SOIC127P600-14N;
-EndCmp
-
-BeginCmp
-TimeStamp = /5224D9C1;
-Reference = U2;
-ValeurCmp = SN74LVC1G04;
-IdModule  = SOT95P280-5N;
-EndCmp
-
-BeginCmp
-TimeStamp = /5224FAA6;
-Reference = U3;
-ValeurCmp = BA00DD0W;
-IdModule  = TO263-6N;
+ValeurCmp = AOZ1031;
+IdModule  = SOIC127P600X175-8N;
 EndCmp
 
 EndListe
