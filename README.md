@@ -2,4 +2,7 @@ MAVRIC_Camera
 =============
 
 Hardware and firmware for MAVRIC's camera system
-Uses the [Aerodyne Kicad Library](https://github.com/aerodynelabs/kicadlib).
+
+Hardware design files use the [Aerodyne Labs KiCad library](https://github.com/aerodynelabs/kicadlib)
+
+Based off the [Fubarino Mini](http://fubarino.org/mini/)
