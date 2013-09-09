@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 9/5/2013 2:14:15 PM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 9/8/2013 10:40:56 PM
 
 BeginCmp
 TimeStamp = /5228CA88;
@@ -162,6 +162,20 @@ IdModule  = CAPC3216;
 EndCmp
 
 BeginCmp
+TimeStamp = /522D44D8;
+Reference = C24;
+ValeurCmp = 22uF;
+IdModule  = CAPC3216;
+EndCmp
+
+BeginCmp
+TimeStamp = /522D44E0;
+Reference = C25;
+ValeurCmp = 22uF;
+IdModule  = CAPC3216;
+EndCmp
+
+BeginCmp
 TimeStamp = /5223DBFF;
 Reference = J1;
 ValeurCmp = MASTER;
@@ -207,14 +221,14 @@ BeginCmp
 TimeStamp = /5228CD7D;
 Reference = L2;
 ValeurCmp = 22uH;
-IdModule  = INDC-SRN1060;
+IdModule  = INDC-NR8040;
 EndCmp
 
 BeginCmp
 TimeStamp = /5228CAF0;
 Reference = L3;
 ValeurCmp = 22uH;
-IdModule  = INDC-SRN1060;
+IdModule  = INDC-NR8040;
 EndCmp
 
 BeginCmp
