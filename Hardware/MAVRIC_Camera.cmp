@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 9/8/2013 10:40:56 PM
+Cmp-Mod V01 Created by PcbNew date = 9/9/2013 10:13:34 PM
 
 BeginCmp
 TimeStamp = /5228CA88;
@@ -179,7 +179,7 @@ BeginCmp
 TimeStamp = /5223DBFF;
 Reference = J1;
 ValeurCmp = MASTER;
-IdModule  = WM5576;
+IdModule  = CONN-WM5576;
 EndCmp
 
 BeginCmp
@@ -193,7 +193,7 @@ BeginCmp
 TimeStamp = /5223DC0E;
 Reference = J3;
 ValeurCmp = SERVO;
-IdModule  = WM5576;
+IdModule  = CONN-WM5576;
 EndCmp
 
 BeginCmp
@@ -207,7 +207,7 @@ BeginCmp
 TimeStamp = /522809D0;
 Reference = J5;
 ValeurCmp = USB_MINI;
-IdModule  = WM17143CT;
+IdModule  = CONN-USB-M26FTR;
 EndCmp
 
 BeginCmp
@@ -375,28 +375,28 @@ BeginCmp
 TimeStamp = /52282726;
 Reference = U3;
 ValeurCmp = AOZ1031;
-IdModule  = SOIC127P600X175-8N;
+IdModule  = SOIC127P600-8N;
 EndCmp
 
 BeginCmp
 TimeStamp = /52280BCA;
 Reference = U4;
 ValeurCmp = AOZ1031;
-IdModule  = SOIC127P600X175-8N;
+IdModule  = SOIC127P600-8N;
 EndCmp
 
 BeginCmp
 TimeStamp = /52281087;
 Reference = U5;
 ValeurCmp = AOZ1031;
-IdModule  = SOIC127P600X175-8N;
+IdModule  = SOIC127P600-8N;
 EndCmp
 
 BeginCmp
 TimeStamp = /522805B1;
 Reference = X1;
 ValeurCmp = 8MHz;
-IdModule  = HC49-US;
+IdModule  = XTAL-2SMD-60x35;
 EndCmp
 
 EndListe

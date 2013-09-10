@@ -1,7 +1,7 @@
 (export (version D)
   (design
-    (source C:\Users\eharstad\Documents\GitHub\MAVRIC_Camera\Hardware\MAVRIC_Camera.sch)
-    (date "9/8/2013 11:12:59 PM")
+    (source C:/Users/eharstad/Documents/GitHub/MAVRIC_Camera/Hardware/MAVRIC_Camera.sch)
+    (date "9/9/2013 1:38:13 AM")
     (tool "eeschema (2013-07-07 BZR 4022)-stable"))
   (components
     (comp (ref J1)
@@ -330,7 +330,7 @@
     (libpart (lib Aerodyne_v2) (part AOZ1031)
       (description "Regulator, Buck, 3A, Sync")
       (footprints
-        (fp SOIC127P600X175-8*))
+        (fp SOIC127P600-8*))
       (fields
         (field (name Reference) U)
         (field (name Value) AOZ1031)
