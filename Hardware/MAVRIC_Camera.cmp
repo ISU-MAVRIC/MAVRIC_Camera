@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by PcbNew date = 9/9/2013 10:13:34 PM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 9/10/2013 9:57:22 PM
 
 BeginCmp
 TimeStamp = /5228CA88;
@@ -176,6 +176,20 @@ IdModule  = CAPC3216;
 EndCmp
 
 BeginCmp
+TimeStamp = /522FDBA3;
+Reference = D1;
+ValeurCmp = LED;
+IdModule  = LEDC2012;
+EndCmp
+
+BeginCmp
+TimeStamp = /522FDDF9;
+Reference = D2;
+ValeurCmp = LED;
+IdModule  = LEDC2012;
+EndCmp
+
+BeginCmp
 TimeStamp = /5223DBFF;
 Reference = J1;
 ValeurCmp = MASTER;
@@ -339,6 +353,20 @@ EndCmp
 BeginCmp
 TimeStamp = /52281038;
 Reference = R16;
+ValeurCmp = R;
+IdModule  = RESC2012;
+EndCmp
+
+BeginCmp
+TimeStamp = /522FDBBC;
+Reference = R17;
+ValeurCmp = R;
+IdModule  = RESC2012;
+EndCmp
+
+BeginCmp
+TimeStamp = /522FDDEA;
+Reference = R18;
 ValeurCmp = R;
 IdModule  = RESC2012;
 EndCmp
