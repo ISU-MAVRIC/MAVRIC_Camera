@@ -23,6 +23,7 @@ SonyFCB cam = SonyFCB(Serial1, 1);
 // Global Variables
 int16_t panTime = servoCenter;
 int16_t tiltTime = servoCenter;
+uint8_t bufStatus = false;
 uint8_t bufPos = 0;
 uint8_t buf[16];
 
@@ -76,15 +77,49 @@ void updateServos(void) {
 	SoftPWMServoServoWrite(pinPan, panTime);
 	SoftPWMServoServoWrite(pinTilt, tiltTime);
 	Serial.print("<SCP");
-	Serial.write((panTime & 0xf0) >> 8);
-	Serial.write(panTime & 0x0f);
-	Serial.write((tiltTime & 0xf0) >> 8);
-	Serial.write(tiltTime & 0x0f);
+	int16_t pan = panTime - servoCenter;
+	int16_t tilt = tiltTime - servoCenter;
+	Serial.write((uint8_t)((pan & 0xf0) >> 8));
+	Serial.write(pan & 0x0f);
+	Serial.write((uint8_t)((tilt & 0xf0) >> 8));
+	Serial.write(tilt & 0x0f);
 	Serial.println(">");
+}
+
+void parseCommand(void) {
+	// Must be command packet
+	if(buf[0] != 'C') return;
+	// Must be camera command
+	if(buf[1] != 'C') return;
+	// Parse command
+	if(buf[2] == 'P' || buf[2] == 'p') { // Position command
+		// Ensure packet is long enough
+		if(bufPos < 7) return;
+		// Get pan value
+		int16_t pan = (buf[3] << 8) | buf[4];
+		// Get tilt value
+		int16_t tilt = (buf[5] << 8) | buf[6];
+		if(buf[2] == 'P') { // Absolute
+			absoluteServoUpdate(pan, tilt);
+		} else { // Relative
+			relativeServoUpdate(pan, tilt);
+		}
+	}
+	bufPos = 0;
+	bufStatus = false;
 }
 
 void loop(void) {
 	if(Serial.available()) {
 		uint8_t x = Serial.read();
+		if(bufStatus) {
+			if(x == '>') {
+				parseCommand();
+			} else {
+				buf[bufPos++] = x;
+			}
+		} else {
+			if(x == '<') bufStatus = true;
+		}
 	}
 }
