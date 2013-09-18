@@ -79,10 +79,10 @@ void updateServos(void) {
 	Serial.print("<SCP");
 	int16_t pan = panTime - servoCenter;
 	int16_t tilt = tiltTime - servoCenter;
-	Serial.write((uint8_t)((pan & 0xf0) >> 8));
-	Serial.write(pan & 0x0f);
-	Serial.write((uint8_t)((tilt & 0xf0) >> 8));
-	Serial.write(tilt & 0x0f);
+	Serial.write((uint8_t)(pan >> 8));
+	Serial.write((uint8_t)(pan & 0xff));
+	Serial.write((uint8_t)(tilt >> 8));
+	Serial.write((uint8_t)(tilt & 0xff));
 	Serial.println(">");
 }
 
