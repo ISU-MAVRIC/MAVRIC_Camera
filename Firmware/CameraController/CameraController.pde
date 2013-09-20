@@ -2,8 +2,8 @@
 #include "SonyFCB.h"
 
 /* Pin Assignments */
-const uint8_t pinLED = 23;      ///< LED indicator pin
-const uint8_t pinCamEn = 13;    ///< Camera active pin
+const uint8_t pinLED = PIN_LED1;///< LED indicator pin
+const uint8_t pinCamEn = 23;    ///< Camera active pin
 const uint8_t pinServoEn = 20;  ///< Servo active pin
 const uint8_t pinPan = 18;      ///< Pan servo command pin
 const uint8_t pinTilt = 19;     ///< Tilt servo command pin
@@ -12,13 +12,14 @@ const uint8_t pinU1RX = 12;     ///< Host serial input
 const uint8_t pinU2TX = 25;     ///< Camera serial output
 const uint8_t pinU2RX = 24;     ///< Camera serial input
 
+/* Constant variables */
 const uint16_t servoMinTime = 650;    ///< Servo min rotation time to update position, in ms
 const uint16_t servoMaxTime = 2350;   ///< Servo max rotation time to update postition, in ms
 const uint16_t servoMaxAngle = 3600;  ///< Servo max postion
 const uint16_t servoCenter = (servoMaxTime - servoMinTime) / 2; ///< Servo center/default positon
 
 /* Global Objects */
-SonyFCB cam = SonyFCB(Serial1, 1);
+//SonyFCB cam = SonyFCB(Serial1, 1);
 
 /* Global Variables */
 int16_t panTime = servoCenter;  ///< Pan position, in ms
@@ -26,11 +27,12 @@ int16_t tiltTime = servoCenter; ///< Tilt position, in ms
 uint8_t buf[16];                ///< Serial buffer
 uint8_t bufStatus = false;      ///< Buffer packet received flag
 uint8_t bufPos = 0;             ///< Next buffer byte to write to
+uint8_t byteRx = 0;             ///< Serial byte received
 
 /**
  *  Initial setup.
  */
-void setup(void) {
+void setup() {
   /// Initialize pins
   pinMode(pinLED, OUTPUT);
   digitalWrite(pinLED, LOW);
@@ -41,18 +43,19 @@ void setup(void) {
 
   /// Setup host serial
   pinMode(pinU1TX, OUTPUT);
-  mapPps(pinU1TX, PPS_OUT_U1TX);
+  //mapPps(pinU1TX, PPS_OUT_U1TX);
   pinMode(pinU1RX, INPUT);
-  mapPps(pinU1RX, PPS_IN_U1RX);
+  //mapPps(pinU1RX, PPS_IN_U1RX);
   Serial.begin(9600);
+
 
   /// Setup camera
   pinMode(pinU2RX, INPUT);
-  mapPps(pinU2RX, PPS_IN_U2RX);
+  //mapPps(pinU2RX, PPS_IN_U2RX);
   pinMode(pinU2TX, OUTPUT);
-  mapPps(pinU2TX, PPS_OUT_U2TX);
-  Serial1.begin(9600);
-  cam.init();
+  //mapPps(pinU2TX, PPS_OUT_U2TX);
+  //Serial1.begin(9600);
+  //cam.init();
 
   /// Setup servos
   pinMode(pinPan, OUTPUT);
@@ -60,6 +63,8 @@ void setup(void) {
   SoftPWMServoInit();
   SoftPWMServoSetFrameTime(usToTicks(4000));
   SoftPWMServoSetServoFrames(5);
+  
+  Serial.println("Ready.");
 }
 
 /**
@@ -87,7 +92,7 @@ void absoluteServoUpdate(int16_t panAngle, int16_t tiltAngle) {
 /**
  *  Sends servos updated position values.
  */
-void updateServos(void) {
+void updateServos() {
   /// Keep servo positions within bounds
   constrain(panTime, servoMinTime, servoMaxTime);
   constrain(tiltTime, servoMinTime, servoMaxTime);
@@ -95,14 +100,20 @@ void updateServos(void) {
   SoftPWMServoServoWrite(pinPan, panTime);
   SoftPWMServoServoWrite(pinTilt, tiltTime);
   /// Output command via serial
-  Serial.print("<SCP");
+  Serial.print("<~Camera servo position update~ ");
   int16_t pan = panTime - servoCenter;
   int16_t tilt = tiltTime - servoCenter;
+  /*
   Serial.write((uint8_t)(pan >> 8));    /// Output MSB of upated pan position
   Serial.write((uint8_t)(pan & 0xff));  /// Output LSB of upated pan position
   Serial.write((uint8_t)(tilt >> 8));   /// Output MSB of upated tilt position
   Serial.write((uint8_t)(tilt & 0xff)); /// Output LSB of upated tilt position
-  Serial.println(">");
+  */
+  Serial.print(" Pan:");
+  Serial.print(pan, DEC);
+  Serial.print("  Tilt:");
+  Serial.print(tilt, DEC);
+  Serial.println(" >");
 }
 
 /**
@@ -116,7 +127,7 @@ void updateServos(void) {
  *    [5] - Byte 3 of packet parameters (Tilt[0])
  *    [6] - Byte 4 of packet parameters (Tilt[1])
  */
-void parseCommand(void) {
+void parseCommand() {
   // TODO Relative position command byte
   
   if(buf[0] != 'C') return;   /// Byte [0] must signal command packet
@@ -144,18 +155,18 @@ void parseCommand(void) {
 /**
  *  Main loop
  */
-void loop(void) {
+void loop() {
   /// Check if serial byte received
-  if(Serial.available()) {
-    uint8_t x = Serial.read();
+  if(Serial.available() > 0) {
+    byteRx = Serial.read();
     if(bufStatus) { /// If byte received is the start of a packet
-      if(x == '>') {  /// If byte received is the end of a packet
+      if(byteRx == '>') {  /// If byte received is the end of a packet
         parseCommand();
       } else {
-        buf[bufPos++] = x;  /// Add byte received to buffer, go to next postion in buffer
+        buf[bufPos++] = byteRx;  /// Add byte received to buffer, go to next postion in buffer
       }
     } else {  /// If first byte of a packet has not yet been received
-      if(x == '<') bufStatus = true;  /// Start of a packet received
-    }
+      if(byteRx == '<') bufStatus = true;  /// Start of a packet received
+    }    
   }
 }
