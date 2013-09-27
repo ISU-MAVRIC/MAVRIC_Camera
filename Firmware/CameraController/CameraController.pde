@@ -16,7 +16,7 @@ const uint8_t pinU2RX = 24;     ///< Camera serial input
 const uint16_t servoMinTime = 650;    ///< Servo min rotation time to update position, in ms
 const uint16_t servoMaxTime = 2350;   ///< Servo max rotation time to update postition, in ms
 const uint16_t servoMaxAngle = 3600;  ///< Servo max postion
-const uint16_t servoCenter = (servoMaxTime - servoMinTime) / 2; ///< Servo center/default positon
+const uint16_t servoCenter = (servoMaxTime + servoMinTime) / 2; ///< Servo center/default positon
 
 /* Global Objects */
 //SonyFCB cam = SonyFCB(Serial1, 1);
@@ -94,15 +94,17 @@ void absoluteServoUpdate(int16_t panAngle, int16_t tiltAngle) {
  */
 void updateServos() {
   /// Keep servo positions within bounds
-  constrain(panTime, servoMinTime, servoMaxTime);
-  constrain(tiltTime, servoMinTime, servoMaxTime);
+  panTime = constrain(panTime, servoMinTime, servoMaxTime);
+  tiltTime = constrain(tiltTime, servoMinTime, servoMaxTime);
   /// Send PWM position signals
   SoftPWMServoServoWrite(pinPan, panTime);
   SoftPWMServoServoWrite(pinTilt, tiltTime);
   /// Output command via serial
   Serial.print("<~Camera servo position update~ ");
-  int16_t pan = panTime - servoCenter;
-  int16_t tilt = tiltTime - servoCenter;
+  int16_t pan = panTime;// - servoCenter;
+  int16_t tilt = tiltTime;// - servoCenter;
+  int16_t percentTilt = (tilt - servoMinTime) * 100 / (servoMaxTime - servoMinTime);
+
   /*
   Serial.write((uint8_t)(pan >> 8));    /// Output MSB of upated pan position
   Serial.write((uint8_t)(pan & 0xff));  /// Output LSB of upated pan position
@@ -112,7 +114,8 @@ void updateServos() {
   Serial.print(" Pan:");
   Serial.print(pan, DEC);
   Serial.print("  Tilt:");
-  Serial.print(tilt, DEC);
+  Serial.print(percentTilt, DEC);
+  Serial.print("%");
   Serial.println(" >");
 }
 
@@ -126,9 +129,10 @@ void updateServos() {
  *    [4] - Byte 2 of packet parameters (Pan[1])
  *    [5] - Byte 3 of packet parameters (Tilt[0])
  *    [6] - Byte 4 of packet parameters (Tilt[1])
+ *  
+ *  Servo position is 0 at center, and from range/2 to -(range/2).
  */
 void parseCommand() {
-  // TODO Relative position command byte
   
   if(buf[0] != 'C') return;   /// Byte [0] must signal command packet
   if(buf[1] != 'C') return;   /// Byte [1] must signal camera command
