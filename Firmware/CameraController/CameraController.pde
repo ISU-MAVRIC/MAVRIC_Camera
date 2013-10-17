@@ -3,7 +3,7 @@
 
 /* Pin Assignments */
 const uint8_t pinLED = PIN_LED1;///< LED indicator pin
-const uint8_t pinCamEn = 23;    ///< Camera active pin
+const uint8_t pinCamEn = 13;    ///< Camera active pin
 const uint8_t pinServoEn = 20;  ///< Servo active pin
 const uint8_t pinPan = 18;      ///< Pan servo command pin
 const uint8_t pinTilt = 19;     ///< Tilt servo command pin
@@ -19,7 +19,7 @@ const uint16_t servoMaxAngle = 3600;  ///< Servo max postion
 const uint16_t servoCenter = (servoMaxTime + servoMinTime) / 2; ///< Servo center/default positon
 
 /* Global Objects */
-//SonyFCB cam = SonyFCB(Serial1, 1);
+SonyFCB cam = SonyFCB(Serial1, 1);
 
 /* Global Variables */
 int16_t panTime = servoCenter;  ///< Pan position, in ms
@@ -43,19 +43,19 @@ void setup() {
 
   /// Setup host serial
   pinMode(pinU1TX, OUTPUT);
-  //mapPps(pinU1TX, PPS_OUT_U1TX);
+  mapPps(pinU1TX, PPS_OUT_U1TX);
   pinMode(pinU1RX, INPUT);
-  //mapPps(pinU1RX, PPS_IN_U1RX);
+  mapPps(pinU1RX, PPS_IN_U1RX);
   Serial.begin(9600);
 
 
   /// Setup camera
   pinMode(pinU2RX, INPUT);
-  //mapPps(pinU2RX, PPS_IN_U2RX);
+  mapPps(pinU2RX, PPS_IN_U2RX);
   pinMode(pinU2TX, OUTPUT);
-  //mapPps(pinU2TX, PPS_OUT_U2TX);
-  //Serial1.begin(9600);
-  //cam.init();
+  mapPps(pinU2TX, PPS_OUT_U2TX);
+  Serial1.begin(9600);
+  cam.init();
 
   /// Setup servos
   pinMode(pinPan, OUTPUT);
@@ -104,6 +104,7 @@ void updateServos() {
   int16_t pan = panTime;// - servoCenter;
   int16_t tilt = tiltTime;// - servoCenter;
   int16_t percentTilt = (tilt - servoMinTime) * 100 / (servoMaxTime - servoMinTime);
+  int16_t percentPan = (pan - servoMinTime) * 100 / (servoMaxTime - servoMinTime);
 
   /*
   Serial.write((uint8_t)(pan >> 8));    /// Output MSB of upated pan position
@@ -112,7 +113,8 @@ void updateServos() {
   Serial.write((uint8_t)(tilt & 0xff)); /// Output LSB of upated tilt position
   */
   Serial.print(" Pan:");
-  Serial.print(pan, DEC);
+  Serial.print(percentPan, DEC);
+  Serial.print("%");
   Serial.print("  Tilt:");
   Serial.print(percentTilt, DEC);
   Serial.print("%");
