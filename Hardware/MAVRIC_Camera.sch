@@ -2,7 +2,7 @@ EESchema Schematic File Version 2
 LIBS:Aerodyne_v2
 LIBS:power
 LIBS:MAVRIC_Camera-cache
-EELAYER 27 0
+EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -47,7 +47,7 @@ F 1 "CAMERA" H 10900 2600 60  0000 C CNN
 F 2 "" H 10900 3150 60  0000 C CNN
 F 3 "" H 10900 3150 60  0000 C CNN
 	1    10900 3100
-	-1   0    0    -1  
+	-1   0    0    1   
 $EndComp
 $Comp
 L ICSP-PIC J4
